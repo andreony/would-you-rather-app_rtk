@@ -1,8 +1,12 @@
-import { configureStore } from '@reduxjs/toolkit';
-import counterReducer from '../features/counter/counterSlice';
+import { configureStore, getDefaultMiddleware } from '@reduxjs/toolkit';
+import logger from '../middleware/logger';
+import authReducer from '../features/auth/authedUserSlice'
+import usersReducer from '../features/users/usersSlice'
 
 export default configureStore({
   reducer: {
-    counter: counterReducer,
+    authedUser: authReducer,
+    users: usersReducer,
   },
+  middleware: [ ...getDefaultMiddleware(), logger ]
 });
