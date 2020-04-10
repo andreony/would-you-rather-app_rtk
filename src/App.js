@@ -18,6 +18,7 @@ function App() {
       <div className="container">
         <h3>Main App.js</h3>
         <div>
+          <Route path="/" exact render={ (props) => props.history.push('/home')} />
           <Route path="/Login" exact component={Login} />
 
         </div>
