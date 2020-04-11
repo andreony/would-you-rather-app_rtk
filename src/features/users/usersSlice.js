@@ -19,9 +19,10 @@ const usersSlice = createSlice({
             state.entities[authedUser.userId].answers[qid] = answer
         },
         saveQuestionToUser(state, action){
-            const { authedUser, qid } = action.payload
-            const questions = state.entities[authedUser.userId].questions 
-            !questions.includes(qid) && questions.push(qid)
+            const { id, author } = action.payload
+            console.log(id, author)
+            const questions = state.entities[author].questions 
+            !questions.includes(id) && questions.push(id)
         },
         /* for later */
         removeUser: usersAdapter.removeOne

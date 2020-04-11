@@ -4,13 +4,13 @@ import { authenticateUser } from './authedUserSlice'
 import { connect } from "react-redux";
 import { Redirect } from 'react-router-dom';
 
-const Login = ({ users, dispatch, history }) => {
+const Login = ({ users, dispatch, browsingHistory }) => {
 
 	const handleLogin = (e) => {
 		const userId = e.target.value 
 		const user = users.entities[userId]
 		dispatch(authenticateUser(user))
-		history.push('/')
+		browsingHistory.push('/')
 		//return <Redirect to="/"/> //props.history.push('/')
 	}
 
@@ -46,7 +46,7 @@ const Login = ({ users, dispatch, history }) => {
 
 const mapStateToProps = ({users}, props) => ({
 	users,
-	history: props.history
+	browsingHistory: props.history
 })
 
 export default connect(mapStateToProps)(Login)

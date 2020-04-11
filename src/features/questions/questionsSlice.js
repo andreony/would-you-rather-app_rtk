@@ -39,9 +39,10 @@ export function handleAsyncAnswerQ ({ authedUser, qid, answer }) {
 
 export const handleAsyncSaveQ = (question) => {
     return (dispatch) => {
+        console.log(question)
         saveQuestion(question)
-            .then( (question) => dispatch(addQuestion(question)) )
-            .then( ({id, author}) => dispatch(saveQuestionToUser({id, author})) )
+            .then( (question) => dispatch(addQuestion({...question})) )
+            .then( (action) => dispatch(saveQuestionToUser(action.payload)) )
     }
 }
 

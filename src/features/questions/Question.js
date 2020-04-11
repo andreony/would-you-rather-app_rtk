@@ -1,10 +1,14 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
+import { Link, Redirect } from 'react-router-dom'
 import { formatQuestion } from '../../utils/helpers'
 import { connect } from 'react-redux'
 
 const Question = ({ question, authedUser, users }) => {
 	const { id, authorName, avatarURL, optionOne } = question
+
+	if(!authedUser.userId)
+		return <Redirect to='/' />
+
 	return (
 		<div className="card mb-3">
 			<div className="card-header">

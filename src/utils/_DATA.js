@@ -149,7 +149,7 @@ let users = {
   
   export function _saveQuestion (question) {
     return new Promise((res, rej) => {
-      const authedUser = question.author;
+      const userId = question.author;
       const formattedQuestion = formatQuestion(question)
   
       setTimeout(() => {
@@ -160,9 +160,9 @@ let users = {
         
         users = {
           ...users,
-          [authedUser]: {
-            ...users[authedUser],
-            questions: users[authedUser].questions.concat([formattedQuestion.id])
+          [userId]: {
+            ...users[userId],
+            questions: users[userId].questions.concat([formattedQuestion.id])
           }
         }
   

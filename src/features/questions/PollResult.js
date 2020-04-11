@@ -2,7 +2,6 @@ import React from 'react'
 import ProgressBar from './ProgressBar'
 import { formatQuestion } from '../../utils/helpers'
 import { connect } from 'react-redux'
-import { Redirect } from 'react-router-dom'
 
 const PollResult = ({question, authedUser, browsingHistory }) => {
 
@@ -40,7 +39,7 @@ const PollResult = ({question, authedUser, browsingHistory }) => {
 										}>
 										<div className="your-answer">You</div>
 										<div className="card-body py-2">
-												<p>{'question1'}</p>
+												<p>{question.optionOne.text}</p>
 												<ProgressBar percentage={(optOneCounts * 100 / (optOneCounts + optTwoCounts)).toFixed(1) }/>
 												<p><b>{`${optOneCounts} out of ${optOneCounts + optTwoCounts} votes`}</b></p>
 										</div>
@@ -54,7 +53,7 @@ const PollResult = ({question, authedUser, browsingHistory }) => {
 									}>
 									<div className="your-answer">You</div>
 									<div className="card-body py-2">
-											<p>{'question2'}</p>
+											<p>{question.optionTwo.text}</p>
 											<ProgressBar percentage={(optTwoCounts *100 / (optOneCounts + optTwoCounts)).toFixed(1)}/>
 											<p><b>{`${optTwoCounts} out of ${optOneCounts + optTwoCounts} votes`}</b></p>
 									</div>

@@ -8,6 +8,7 @@ import Nav from './app/Nav';
 import Dashboard from './features/questions/Dashboard';
 import QuestionView from './features/questions/QuestionView';
 import PollResult from './features/questions/PollResult';
+import NewQuestion from './features/questions/NewQuestion';
 
 function App() {
 
@@ -26,6 +27,7 @@ function App() {
               <div>
                 <Route path="/" exact component={Dashboard}/>
                 <Route path="/login" exact component={Login} />
+                <Route path="/add" exact component={NewQuestion} />
                 <Route path="/question/:id" exact component={QuestionView} />
                 <Route path="/question/:id/answer" exact component={PollResult} />
 

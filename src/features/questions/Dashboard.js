@@ -1,7 +1,6 @@
 import React from 'react'
-import { connect, useSelector } from 'react-redux'
+import { connect } from 'react-redux'
 import Question from './Question'
-import { selectAuthedUser } from '../auth/authedUserSlice'
 
 const Dashboard = ({ids, authedUser, history}) =>{
 
