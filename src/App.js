@@ -9,6 +9,7 @@ import Dashboard from './features/questions/Dashboard';
 import QuestionView from './features/questions/QuestionView';
 import PollResult from './features/questions/PollResult';
 import NewQuestion from './features/questions/NewQuestion';
+import LeaderBoard from './features/users/LeaderBoard';
 
 function App() {
 
@@ -30,6 +31,7 @@ function App() {
                 <Route path="/add" exact component={NewQuestion} />
                 <Route path="/question/:id" exact component={QuestionView} />
                 <Route path="/question/:id/answer" exact component={PollResult} />
+                <Route path="/leader-board" exact component={LeaderBoard} />
 
               </div>
             </div>

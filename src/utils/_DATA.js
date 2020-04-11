@@ -24,7 +24,7 @@ let users = {
     johndoe: {
       id: 'johndoe',
       name: 'John Doe',
-      avatarURL: "https://cdn.iconscout.com/icon/free/png-256/avatar-373-456325.png",
+      avatarURL: "https://cdn.iconscout.com/icon/free/png-256/avatar-372-456324.png",
       answers: {
         "xj352vofupe1dqz9emx13r": 'optionOne',
         "vthrdm985a262al8qx3do": 'optionTwo',
