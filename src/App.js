@@ -1,9 +1,13 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, Fragment } from 'react';
 import './App.css';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { BrowserRouter as Router, Route } from 'react-router-dom'
 import Login from './features/auth/Login';
 import { handleInitialData } from './features/shared';
+import Nav from './app/Nav';
+import Dashboard from './features/questions/Dashboard';
+import QuestionView from './features/questions/QuestionView';
+import PollResult from './features/questions/PollResult';
 
 function App() {
 
@@ -14,17 +18,21 @@ function App() {
   },[dispatch]);
 
   return (
-    <Router>
-      <div className="container">
-        <h3>Main App.js</h3>
-        <div>
-          <Route path="/" exact render={ (props) => props.history.push('/home')} />
-          <Route path="/Login" exact component={Login} />
+      <Router>
+        
+        <Fragment>
+          <Nav />
+            <div className="container">
+              <div>
+                <Route path="/" exact component={Dashboard}/>
+                <Route path="/login" exact component={Login} />
+                <Route path="/question/:id" exact component={QuestionView} />
+                <Route path="/question/:id/answer" exact component={PollResult} />
 
-        </div>
-      </div>
-    </Router>
-  );
-}
+              </div>
+            </div>
+        </Fragment>
+      </Router>
+    )}
 
 export default App;

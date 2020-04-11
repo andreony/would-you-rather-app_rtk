@@ -176,10 +176,10 @@ let users = {
       setTimeout(() => {
         users = {
           ...users,
-          [authedUser]: {
-            ...users[authedUser],
+          [authedUser.userId]: {
+            ...users[authedUser.userId],
             answers: {
-              ...users[authedUser].answers,
+              ...users[authedUser.userId].answers,
               [qid]: answer
             }
           }

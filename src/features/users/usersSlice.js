@@ -36,4 +36,12 @@ export const {
     removeUser 
 } = usersSlice.actions
 
+export const {
+    selectById: selectUserById,
+    selectIds: selectUserIds,
+    selectEntities: selectUserEntities,
+    selectAll: selectAllUsers,
+    selectTotal: selectTotalUsers
+  } = usersAdapter.getSelectors(state => state.users);
+
 export default usersSlice.reducer

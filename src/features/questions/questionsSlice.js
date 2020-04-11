@@ -2,6 +2,7 @@ import { createSlice, createEntityAdapter } from "@reduxjs/toolkit";
 import { saveQuestionAnswer, saveQuestion } from "../../utils/api";
 import { updateUserAnswer, saveQuestionToUser } from "../users/usersSlice";
 
+
 const questionsAdapter = createEntityAdapter()
 const initialState = questionsAdapter.getInitialState()
 
@@ -24,9 +25,11 @@ const questionsSlice = createSlice({
     }
 })
 
+export const questionsAll = state => state.questions
+
 export const { addQuestion, receiveQuestions, answerQuestion, removeQuestion  } = questionsSlice.actions
 
-export const handleAsyncAnswerQ = ({ authedUser, qid, answer }) => {
+export function handleAsyncAnswerQ ({ authedUser, qid, answer }) {
     return (dispatch) => {
         saveQuestionAnswer({ authedUser, qid, answer })
             .then( () => dispatch(answerQuestion({ authedUser, qid, answer })) )

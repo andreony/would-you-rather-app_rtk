@@ -1,3 +1,6 @@
+body{
+  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif
+}
 .App {
   text-align: center;
 }
@@ -24,6 +27,70 @@
 
 .App-link {
   color: rgb(112, 76, 182);
+}
+
+.active-nav{
+  background-color: rgb(96, 217, 235);
+  color: white !important;
+  padding: 5px;
+  border-radius: 10px;
+}
+
+.bg-success-light{
+  background-color: #e3fce9  !important
+}
+.your-answer{
+  display: none;
+}
+.progress.x-2rem{
+  height:2rem !important;
+}
+.bg-success-light .your-answer{
+  position: absolute;
+  right: -15px;
+  top: -10px;
+  height: 45px;
+  width: 45px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.1em;
+  font-weight: bold;
+  transform: rotate(15deg);
+  border-radius: 50%;
+  background-color: yellow;
+  box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
+}
+.proc-text{
+  position: 'absolute';
+  top: '50%';
+  left: '50%';
+  transform: 'translate(-50%, -50%)';
+  font-size: 1.3em;
+  font-weight: bold;
+}
+.dashboard-nav{
+  flex: 1 1 auto;
+  text-align: center;
+}
+.scroll-container{
+  max-height: 80vh;
+  overflow-y: auto;
+  scrollbar-color: rgb(23, 162, 184) rgb(96, 217, 235);
+  scrollbar-width: thin;
+}
+
+.score-circle{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 50px;
+  width: 50px;
+  font-size: 1.2em;
+  font-weight: bold;
+  color: white;
+  border-radius: 50%;
+  background-color: rgb(23, 162, 184);
 }
 
 @keyframes App-logo-float {
