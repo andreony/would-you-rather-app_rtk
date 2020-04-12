@@ -93,6 +93,19 @@ body{
   background-color: rgb(23, 162, 184);
 }
 
+.not-found{
+  position: absolute;
+  top: 0px;
+  left: 100px;
+  z-index: -1;
+  background-image: url(img/just404.png);
+  background-size: auto;
+  background-repeat: no-repeat;
+  width: calc(100vw - 100px);
+  height: 100vh;
+  overflow: hidden;
+}
+
 @keyframes App-logo-float {
   0% {
     transform: translateY(0);
