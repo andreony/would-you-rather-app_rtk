@@ -33,7 +33,6 @@ function App() {
                 <Route path="/login" exact component={Login} />
                 <Route path="/add" exact component={NewQuestion} />
                 <Route path="/question/:id" exact component={QuestionView} />
-                <Route path="/question/:id/answer" exact component={PollResult} />
                 <Route path="/leaderboard" exact component={LeaderBoard} />
                 <Route component={NotFound} />
               </Switch>

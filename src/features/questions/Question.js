@@ -23,11 +23,11 @@ const Question = ({ question, authedUser, users }) => {
 					</div>
 					<div className="col-sm-8">
 						<div className="card-title font-weight-bold text-left"><em>Would you rather...</em></div>
-						<p>{optionOne.text.slice(0,15)}...</p>
+						<p>{optionOne.text.length > 30 
+								? `${optionOne.text.slice(0,30)}...`
+								: optionOne.text}</p>
 						<Link 
-							to={ users.entities[authedUser.userId].answers[id] 
-									? `/question/${id}/answer`
-									: `/question/${id}`}>
+							to={`/question/${id}`}>
 								<button className="btn btn-info">View Poll</button>
 						</Link>
 					</div>
