@@ -7,7 +7,6 @@ import { handleInitialData } from './features/shared';
 import Nav from './app/Nav';
 import Dashboard from './features/questions/Dashboard';
 import QuestionView from './features/questions/QuestionView';
-import PollResult from './features/questions/PollResult';
 import NewQuestion from './features/questions/NewQuestion';
 import LeaderBoard from './features/users/LeaderBoard';
 import NotFound from './app/NotFound';
