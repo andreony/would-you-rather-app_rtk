@@ -2,7 +2,6 @@ import React from 'react'
 import logo from '../../logo.svg'
 import { authenticateUser } from './authedUserSlice'
 import { connect } from "react-redux";
-import { Redirect } from 'react-router-dom';
 
 const Login = ({ users, dispatch, browsingHistory }) => {
 
@@ -11,7 +10,6 @@ const Login = ({ users, dispatch, browsingHistory }) => {
 		const user = users.entities[userId]
 		dispatch(authenticateUser(user))
 		browsingHistory.push('/')
-		//return <Redirect to="/"/> //props.history.push('/')
 	}
 
 	return (

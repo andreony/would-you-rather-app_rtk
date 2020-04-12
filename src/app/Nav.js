@@ -25,7 +25,7 @@ const Nav = ({authedUser, dispatch}) => (
 								</NavLink>
 						</li>
 						<li className="nav-item px-3">
-								<NavLink to="/leader-board" activeClassName='active-nav'>
+								<NavLink to="/leaderboard" activeClassName='active-nav'>
 										Leader Board
 								</NavLink>
 						</li>

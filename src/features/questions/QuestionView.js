@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { connect } from 'react-redux'
 import { formatQuestion } from '../../utils/helpers'
-import { answerQuestion, handleAsyncAnswerQ } from './questionsSlice'
+import { handleAsyncAnswerQ } from './questionsSlice'
 import { Redirect } from 'react-router-dom'
 
 const QuestionView = ({id, question, authedUser, dispatch}) => {

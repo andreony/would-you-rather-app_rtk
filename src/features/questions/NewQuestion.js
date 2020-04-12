@@ -3,7 +3,7 @@ import { handleAsyncSaveQ } from './questionsSlice'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
 
-const NewQuestion = ({authedUser, dispatch}) => {
+const NewQuestion = ({authedUser, dispatch, browsingHistory}) => {
 
 	const [newQuestion, setQuestion] = useState({
 		author: authedUser.userId,
@@ -25,6 +25,7 @@ const NewQuestion = ({authedUser, dispatch}) => {
 	const handleSubmit = (e) => {
 		e.preventDefault()
 		dispatch(handleAsyncSaveQ(newQuestion))
+		browsingHistory.push('/')
 	}
 	const handleChange = (e) => {
 		newQuestion[e.target.id] = e.target.value
@@ -53,8 +54,9 @@ const NewQuestion = ({authedUser, dispatch}) => {
 	)
 }
 
-const mapStateToProps = ({authedUser}) => ({
-	authedUser
+const mapStateToProps = ({authedUser}, ownProps) => ({
+	authedUser,
+	browsingHistory: ownProps.history
 })
 
 export default connect(mapStateToProps)(NewQuestion)
