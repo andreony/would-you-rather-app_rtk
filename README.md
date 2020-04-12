@@ -22,6 +22,10 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 ## Instructions
 
+### `npm install`
+
+To install dependencies
+
 ### `yarn start`
 
   
@@ -177,5 +181,6 @@ saveQuestionAnswer({ authedUser, qid, answer })
 
 ## To Do(s)
 
+ - Add component proptypes
  - Add an authentication mechanism 
 
