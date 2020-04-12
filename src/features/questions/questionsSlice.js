@@ -3,7 +3,9 @@ import { saveQuestionAnswer, saveQuestion } from "../../utils/api";
 import { updateUserAnswer, saveQuestionToUser } from "../users/usersSlice";
 
 
-const questionsAdapter = createEntityAdapter()
+const questionsAdapter = createEntityAdapter({
+    sortComparer: (a, b) => b.timestamp - a.timestamp
+})
 const initialState = questionsAdapter.getInitialState()
 
 const questionsSlice = createSlice({

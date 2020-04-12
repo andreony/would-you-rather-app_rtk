@@ -1,29 +1,35 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import Question from './Question'
+import FilterLink from '../filters/FilterLink'
+import { VisibilityFilters } from '../filters/filtersSlice'
+import VisibleQuestions from './VisibleQuestions'
 
-const Dashboard = ({ids, authedUser, history}) =>{
+const Dashboard = ({authedUser, browserHistory}) =>{
 
-     if(!authedUser.userId){
-        history.push('/login')
-     }
-     return (
-         <div className="container">
-             <ul className="w-50 mx-auto mb-1">
-                {ids.map( (id) => (
-                    <Question key={id} id={id} />
-                ))}
-             </ul>
-         </div>
-     )
+	if(!authedUser.userId)
+		browserHistory.push('/login') 
+
+	return (
+		<div className="container">
+			<ul className="nav nav-fill w-50 mx-auto mb-1">
+				<li className="nav-item px-2">
+					<FilterLink filter={VisibilityFilters.SHOW_ALL}>All</FilterLink>
+				</li>
+				<li className="nav-item px-2">
+					<FilterLink filter={VisibilityFilters.SHOW_ANSWERED}>Answered</FilterLink>
+				</li>
+				<li className="nav-item px-2">
+					<FilterLink filter={VisibilityFilters.SHOW_UNANSWERED}>Unaswered</FilterLink>
+				</li>
+			</ul>
+				<VisibleQuestions />
+		</div>
+	)
  }
  
- const mapStateToProps = ({questions, authedUser}) => {
-     const { ids } = questions
-    return {
-        ids,
-        authedUser
-    }
- }
+ const mapStateToProps = ({authedUser}, props) => ({
+	authedUser,
+	browserHistory: props.history
+ })
  
  export default connect(mapStateToProps)(Dashboard)

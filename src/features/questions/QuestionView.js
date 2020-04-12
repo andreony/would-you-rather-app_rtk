@@ -6,7 +6,6 @@ import { Redirect } from 'react-router-dom'
 
 const QuestionView = ({id, question, authedUser, dispatch}) => {
 
-
 	const [questionAnswer, setQuestionAnswer] = useState({
 		authedUser,
 		qid: id,
@@ -96,7 +95,7 @@ const mapStateToProps = ({questions, users, authedUser}, props) => {
 			id,
 			authedUser,
 			users,
-			question: questions.entities[id] 
+			question: questions.entities[id] && users.entities[authedUser.userId]
 				?	formatQuestion(questions.entities[id], users.entities[authedUser.userId], authedUser)
 				: null,
 			dispatch: props.dispatch

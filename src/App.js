@@ -31,7 +31,7 @@ function App() {
                 <Route path="/add" exact component={NewQuestion} />
                 <Route path="/question/:id" exact component={QuestionView} />
                 <Route path="/question/:id/answer" exact component={PollResult} />
-                <Route path="/leader-board" exact component={LeaderBoard} />
+                <Route path="/leaderboard" exact component={LeaderBoard} />
 
               </div>
             </div>
