@@ -3,9 +3,9 @@ import { connect } from 'react-redux'
 import { formatQuestion } from '../../utils/helpers'
 import { handleAsyncAnswerQ } from './questionsSlice'
 import { Redirect } from 'react-router-dom'
-import ProgressBar from '../questions/ProgressBar'
+import PollResult from './PollResult'
 
-const QuestionView = ({id, question, authedUser, dispatch, hasAnswered}) => {
+const QuestionView = ({id, question, authedUser, dispatch, hasAnswered, browsingHistory}) => {
 
 	const [questionAnswer, setQuestionAnswer] = useState({
 		authedUser,
@@ -15,14 +15,15 @@ const QuestionView = ({id, question, authedUser, dispatch, hasAnswered}) => {
 	})
 
 	if(!authedUser.userId)
-		return <Redirect to="/login"/>
+		return <Redirect to={{
+			pathname:"/login",
+			state: {nextUrl:browsingHistory.location.pathname}
+		}}/>
 
 	if(!question)
 		return <div className="App-logo">Loading...</div>
 	
-	const { authorName, avatarURL, optionOne, optionTwo, hasAnsweredOptOne, hasAnsweredOptTwo } = question
-	const optOneCounts = question.optionOne.votes.length
-	const optTwoCounts = question.optionTwo.votes.length
+	const { authorName, avatarURL, optionOne, optionTwo } = question
 
 	const onChange = (e) => setQuestionAnswer( {...questionAnswer, answer: e.target.value})
 
@@ -36,57 +37,7 @@ const QuestionView = ({id, question, authedUser, dispatch, hasAnswered}) => {
 		setQuestionAnswer({...questionAnswer, answered: true})
 	}
 	if (questionAnswer.answered || hasAnswered){
-		return (
-				<div className="card w-50 mx-auto mb-3">
-			<div className="card-header">
-				<b>Asked by {authorName} </b>
-			</div>
-			<div className="card-body py-2">
-				<div className="row align-intems-center">
-					<div className="col-sm-4 d-flex flex-column justify-content-center align-items-center border-right w-100">
-						<img src={avatarURL} alt="avatar" width="120px" height="120px" className="rounded immage"/>
-						<div className="text-center my-2">
-								<b>{authorName}</b>
-						</div>
-					</div>
-					<div className="col-sm-8">
-						<div className="card-title font-weight-bold">Results:</div>
-							<div className="row">
-								<div className="col-sm-12">
-									<div 
-										className={hasAnsweredOptOne 
-												? "card bg-success-light position-relative mb-2"
-												: "card mb-2"
-										}>
-										<div className="your-answer">You</div>
-										<div className="card-body py-2">
-												<p>{question.optionOne.text}</p>
-												<ProgressBar percentage={(optOneCounts * 100 / (optOneCounts + optTwoCounts)).toFixed(1) }/>
-												<p><b>{`${optOneCounts} out of ${optOneCounts + optTwoCounts} votes`}</b></p>
-										</div>
-								</div>
-							</div>
-							<div className="col-sm-12">
-								<div 
-									className={hasAnsweredOptTwo 
-											? "card bg-success-light your-answer mb-2"
-											: "card mb-2"
-									}>
-									<div className="your-answer">You</div>
-									<div className="card-body py-2">
-											<p>{question.optionTwo.text}</p>
-											<ProgressBar percentage={(optTwoCounts *100 / (optOneCounts + optTwoCounts)).toFixed(1)}/>
-											<p><b>{`${optTwoCounts} out of ${optOneCounts + optTwoCounts} votes`}</b></p>
-									</div>
-								</div>
-							</div>
-						</div>
-																			
-					</div>
-				</div>
-			</div>
-		</div>
-	)
+		return <PollResult {...question}/>
 	}
 
 	return(
@@ -98,10 +49,10 @@ const QuestionView = ({id, question, authedUser, dispatch, hasAnswered}) => {
 				<div className="row align-intems-center">
 					<div className="col-sm-4 d-flex flex-column align-items-center border-right w-100">
 						<div>
-								<img src={avatarURL} alt="avatar" width="100px" height="100px" className="rounded immage"/>
+							<img src={avatarURL} alt="avatar" width="100px" height="100px" className="rounded immage"/>
 						</div>
 						<div className="card-text text-center my-2">
-								<b>{authorName}</b>
+							<b>{authorName}</b>
 						</div>
 					</div>
 					<div className="col-sm-8">
@@ -146,16 +97,16 @@ const QuestionView = ({id, question, authedUser, dispatch, hasAnswered}) => {
 const mapStateToProps = ({questions, users, authedUser}, props) => {
 	const { id } = props.match.params
 	return{
-			id,
-			authedUser,
-			users,
-			question: questions.entities[id] && users.entities[authedUser.userId]
-				?	formatQuestion(questions.entities[id], users.entities[authedUser.userId], authedUser)
-				: null,
-			dispatch: props.dispatch,
-			hasAnswered: users.entities[authedUser.userId] 
-				? users.entities[authedUser.userId].answers[id] ? true : false
-				: null
+		id,
+		authedUser,
+		users,
+		question: questions.entities[id] && users.entities[authedUser.userId]
+			?	formatQuestion(questions.entities[id], users.entities[authedUser.userId], authedUser)
+			: null,
+		hasAnswered: users.entities[authedUser.userId] 
+			? users.entities[authedUser.userId].answers[id] ? true : false
+			: null,
+		browsingHistory: props.history
 	}
 }
 

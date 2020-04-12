@@ -2,6 +2,7 @@ import React from 'react'
 import logo from '../../logo.svg'
 import { authenticateUser } from './authedUserSlice'
 import { connect } from "react-redux";
+import { useHistory } from 'react-router-dom';
 
 const Login = ({ users, dispatch, browsingHistory }) => {
 
@@ -9,7 +10,9 @@ const Login = ({ users, dispatch, browsingHistory }) => {
 		const userId = e.target.value 
 		const user = users.entities[userId]
 		dispatch(authenticateUser(user))
-		browsingHistory.push('/')
+		return browsingHistory.location.state
+			? browsingHistory.push(browsingHistory.location.state.nextUrl)
+		  : browsingHistory.push('/')
 	}
 
 	return (

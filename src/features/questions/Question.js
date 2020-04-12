@@ -10,7 +10,7 @@ const Question = ({ question, authedUser, users }) => {
 		return <Redirect to='/' />
 
 	return (
-		<div className="card mb-3">
+		<div className="card shadow mb-3">
 			<div className="card-header">
 				<em> {authorName} </em>
 				<span>askes: </span>

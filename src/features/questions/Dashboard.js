@@ -11,7 +11,7 @@ const Dashboard = ({authedUser, browserHistory}) =>{
 
 	return (
 		<div className="container">
-			<ul className="nav nav-fill w-50 mx-auto mb-1">
+			<ul className="nav nav-fill w-50 mx-auto mb-2">
 				<li className="nav-item px-2">
 					<FilterLink filter={VisibilityFilters.SHOW_ALL}>All</FilterLink>
 				</li>
