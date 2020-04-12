@@ -1,6 +1,6 @@
 import React, { useEffect, Fragment } from 'react';
 import './App.css';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 import Login from './features/auth/Login';
 import { handleInitialData } from './features/shared';
@@ -11,6 +11,7 @@ import PollResult from './features/questions/PollResult';
 import NewQuestion from './features/questions/NewQuestion';
 import LeaderBoard from './features/users/LeaderBoard';
 import NotFound from './app/NotFound';
+import LoadingBar from 'react-redux-loading-bar'
 
 function App() {
 
@@ -25,7 +26,8 @@ function App() {
         
         <Fragment>
           <Nav />
-            <div className="container">
+            <LoadingBar />
+            <div className="container mt-5">
               <Switch>
                 <Route path="/" exact component={Dashboard}/>
                 <Route path="/login" exact component={Login} />

@@ -27,6 +27,7 @@ const selectVisibleQuestions = createSelector(
 								filterdQuestions.ids.push(id)
 								filterdQuestions.entities[id] = questions.entities[id]
 						}
+						return false
 					})
 					return filterdQuestions
 
@@ -37,6 +38,7 @@ const selectVisibleQuestions = createSelector(
 							filterdQuestions.ids.push(id)
 							filterdQuestions.entities[id] = questions.entities[id]
 						}
+						return false
 					})
 					return filterdQuestions
 				default:

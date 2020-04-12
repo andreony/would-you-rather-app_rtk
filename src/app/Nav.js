@@ -5,7 +5,7 @@ import { logoutUser } from '../features/auth/authedUserSlice'
 import { connect } from 'react-redux'
 
 const Nav = ({authedUser, dispatch}) => (
-	<nav className="navbar navbar-expand-lg navbar-light bg-light mb-5">
+	<nav className="navbar navbar-expand-lg navbar-light bg-light mb-0">
 		<Link className="navbar-brand" to="/home">
 			<img width="48px" height="48px" src={mainLogo} alt="Navbar"/>
 		</Link>

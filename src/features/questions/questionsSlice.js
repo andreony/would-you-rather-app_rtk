@@ -1,6 +1,7 @@
 import { createSlice, createEntityAdapter } from "@reduxjs/toolkit";
 import { saveQuestionAnswer, saveQuestion } from "../../utils/api";
 import { updateUserAnswer, saveQuestionToUser } from "../users/usersSlice";
+import { showLoading, hideLoading } from "react-redux-loading-bar";
 
 
 const questionsAdapter = createEntityAdapter({
@@ -33,18 +34,21 @@ export const { addQuestion, receiveQuestions, answerQuestion, removeQuestion  } 
 
 export function handleAsyncAnswerQ ({ authedUser, qid, answer }) {
     return (dispatch) => {
+        dispatch(showLoading())
         saveQuestionAnswer({ authedUser, qid, answer })
             .then( () => dispatch(answerQuestion({ authedUser, qid, answer })) )
             .then( () => dispatch(updateUserAnswer({ authedUser, qid, answer })) )
+            .then( () => dispatch(hideLoading()))
     }
 }
 
 export const handleAsyncSaveQ = (question) => {
     return (dispatch) => {
-        console.log(question)
+        dispatch(showLoading())
         saveQuestion(question)
             .then( (question) => dispatch(addQuestion({...question})) )
             .then( (action) => dispatch(saveQuestionToUser(action.payload)) )
+            .then( () => dispatch(hideLoading()))
     }
 }
 
