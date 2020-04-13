@@ -15,7 +15,10 @@ const NewQuestion = ({authedUser, dispatch, browsingHistory}) => {
 		return(
 			<div className="container text-center">
 				<h5>You must login in order to submit a question... </h5>
-				<Link to='/login'>
+				<Link to={{
+					pathname:"/login",
+					state: {nextUrl:browsingHistory.location.pathname}
+				}}>
 					Take me to login page
 				</Link>
 			</div>
